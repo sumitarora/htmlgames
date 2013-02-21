@@ -8,25 +8,31 @@ function hideAll()
 }
 
 $(function(){
+
+    for (var i = 0; i < 45; i++) {
+        $('#boxGameInner').append('<div id="boxClick" class="box1"></div>');
+    }
+
     hideAll();
-    $("#boxMenu").fadeIn(1000);
+    $("#boxMenu").slideDown(1000);
 
     var points = 0;
     var seconds = 0;
     var timer = $.timer(function() {
         var n = parseInt(Math.random() * 49);
-        $('.box1').css("background-color","red");
-        $('.box1:eq('+n+')').css("background-color","black");
+        $('.box1').css("background-image","url('h2.png')");
+        $('.box1:eq('+n+')').css("background-image","url('m2.png')");
         seconds++;
     });
     timer.set({ time : 1000, autostart : false });
 
     $(".box1").click(function(event)
     {
-        var color = $(this).css("background-color");
-        if(color == "rgb(0, 0, 0)")
+        var img = $(this).css("background-image");
+        var index = img.indexOf('m2.png');
+        if(index > 0)
         {
-            $(this).css("background-color","red");
+            $(this).css("background-image","url('h2.png')");
             points++;
         }
         $('#txtScore').text("Points: " + points);
@@ -64,22 +70,22 @@ $(function(){
 
     $("#btnHelp").click(function(){
         hideAll();
-        $("#boxHelp").fadeIn(1000);
+        $("#boxHelp").slideDown(1000);
     });
 
     $("#btnAbout").click(function(){
         hideAll();
-        $("#boxAbout").fadeIn(1000);
+        $("#boxAbout").slideDown(1000);
     });
 
     $("#btnBack1").click(function(){
         hideAll();
-        $("#boxMenu").fadeIn(1000);
+        $("#boxMenu").slideDown(1000);
     });
 
     $("#btnBack2").click(function(){
         hideAll();
-        $("#boxMenu").fadeIn(1000);
+        $("#boxMenu").slideDown(1000);
     });
 
     $("#btnBack3").click(function(){
